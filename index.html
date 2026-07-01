@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vaso Cerâmica Artesanal - Nivia Pimenta</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-black: #1a1a1a;
+            --primary-white: #ffffff;
+            --light-gray: #f5f5f5;
+            --medium-gray: #999999;
+            --dark-gray: #333333;
+            --accent-red: #d32f2f;
+            --accent-blue: #1976d2;
+            --accent-purple: #7c3aed;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--primary-black);
+            background-color: var(--primary-white);
+            line-height: 1.6;
+        }
+
+        /* NAVBAR */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: var(--primary-white);
+            border-bottom: 1px solid var(--light-gray);
+            padding: 1.2rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+
+        .nav-brand {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--primary-black);
+            text-decoration: none;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            align-items: center;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--primary-black);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            letter-spacing: 0.3px;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-red);
+        }
+
+        .nav-links .back-link {
+            color: var(--accent-red);
+            font-weight: 600;
+        }
+
+        .nav-links .back-link:hover {
+            color: var(--primary-black);
+        }
+
+        /* MOBILE MENU */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            height: 2px;
+            background-color: var(--primary-black);
+            transition: 0.3s;
+        }
+
+        /* HERO SECTION */
+        .hero {
+            margin-top: 80px;
+            min-height: 100vh;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            padding: 4rem 2rem;
+            max-width: 1400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            color: var(--primary-black);
+            letter-spacing: -1px;
+        }
+
+        .hero-content .subtitle {
+            font-size: 0.9rem;
+            color: var(--medium-gray);
+            margin-bottom: 2rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-weight: 500;
+        }
+
+        .hero-content p {
+            font-size: 1rem;
+            color: var(--dark-gray);
+            margin-bottom: 2rem;
+            line-height: 1.8;
+            max-width: 500px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background-color: var(--accent-red);
+            color: var(--primary-white);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .cta-button:hover {
+            background-color: var(--primary-black);
+            transform: translateY(-2px);
+        }
+
+        .hero-image {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero-image img {
+            width: 100%;
+            max-width: 450px;
+            object-fit: cover;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        /* ABOUT SECTION */
+        .about {
+            background-color: var(--light-gray);
+            padding: 5rem 2rem;
+        }
+
+        .about-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .about h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
+            color: var(--primary-black);
+            text-align: center;
+        }
+
+        .about-text {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .about-text p {
+            font-size: 0.95rem;
+            line-height: 1.9;
+            color: var(--dark-gray);
+        }
+
+        .about-text strong {
+            color: var(--primary-black);
+            font-weight: 600;
+        }
+
+        /* HIGHLIGHTS SECTION */
+        .highlights {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .highlights-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .highlight-item {
+            text-align: center;
+        }
+
+        .highlight-item h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--primary-black);
+        }
+
+        .highlight-item p {
+            font-size: 0.9rem;
+            color: var(--medium-gray);
+            line-height: 1.7;
+        }
+
+        /* GALLERY SECTION */
+        .gallery {
+            background-color: var(--light-gray);
+            padding: 5rem 2rem;
+        }
+
+        .gallery-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .gallery h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
+            text-align: center;
+            color: var(--primary-black);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            aspect-ratio: 1;
+            cursor: pointer;
+            background-color: var(--primary-white);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.08);
+        }
+
+        /* DESIGN SECTION */
+        .design {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .design h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
+            text-align: center;
+            color: var(--primary-black);
+        }
+
+        .design-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .design-specs {
+            display: flex;
+            flex-direction: column;
+            gap: 2.5rem;
+        }
+
+        .spec-item h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--primary-black);
+            margin-bottom: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .spec-item p {
+            font-size: 0.95rem;
+            line-height: 1.8;
+            color: var(--dark-gray);
+        }
+
+        .design-image {
+            display: flex;
+            justify-content: center;
+        }
+
+        .design-image img {
+            width: 100%;
+            max-width: 350px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        /* ARTIST SECTION */
+        .artist {
+            background-color: var(--light-gray);
+            padding: 5rem 2rem;
+        }
+
+        .artist-container {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .artist h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            color: var(--primary-black);
+        }
+
+        .artist-bio {
+            font-size: 1rem;
+            line-height: 1.9;
+            color: var(--dark-gray);
+        }
+
+        .artist-bio strong {
+            color: var(--primary-black);
+            font-weight: 600;
+        }
+
+        /* CTA SECTION */
+        .cta-section {
+            padding: 5rem 2rem;
+            background: linear-gradient(135deg, var(--primary-black) 0%, var(--dark-gray) 100%);
+            color: var(--primary-white);
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-section p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.8;
+        }
+
+        .cta-button-white {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background-color: var(--accent-red);
+            color: var(--primary-white);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .cta-button-white:hover {
+            background-color: var(--primary-white);
+            color: var(--primary-black);
+        }
+
+        /* FOOTER */
+        footer {
+            background-color: var(--primary-black);
+            color: var(--medium-gray);
+            padding: 3rem 2rem;
+            text-align: center;
+            font-size: 0.85rem;
+        }
+
+        footer a {
+            color: var(--primary-white);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        footer a:hover {
+            color: var(--accent-red);
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .hero {
+                grid-template-columns: 1fr;
+                margin-top: 80px;
+                gap: 2rem;
+                padding: 2rem 1.5rem;
+            }
+
+            .hero-content h1 {
+                font-size: 2.2rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            .about-text {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .highlights-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .design-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 1.5rem;
+            }
+
+            .about h2,
+            .gallery h2,
+            .design h2,
+            .artist h2 {
+                font-size: 1.8rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            nav {
+                padding: 1rem 1.5rem;
+            }
+
+            .nav-brand {
+                font-size: 0.9rem;
+            }
+
+            .hero {
+                margin-top: 70px;
+                padding: 1.5rem 1rem;
+            }
+
+            .hero-content h1 {
+                font-size: 1.8rem;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-section h2 {
+                font-size: 1.6rem;
+            }
+        }
+
+        a {
+            transition: color 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+    <!-- NAVBAR -->
+    <nav>
+        <a href="#" class="nav-brand">Nivia Pimenta Ceramica</a>
+        <ul class="nav-links">
+            <li><a href="#inicio">Início</a></li>
+            <li><a href="#sobre">Sobre</a></li>
+            <li><a href="#galeria">Galeria</a></li>
+            <li><a href="https://niviapimentaceramica.com/" class="back-link">← Voltar à Loja</a></li>
+        </ul>
+        <div class="menu-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="hero" id="inicio">
+        <div class="hero-content">
+            <p class="subtitle">Coleção Vasos Artesanais</p>
+            <h1>Vaso Cerâmica Artesanal</h1>
+            <p>Peça única feita à mão por Nivia Pimenta. Design geométrico sofisticado que traz leveza, harmonia e a marca autêntica da criatividade de uma artista mulher. Cada vaso é uma celebração de identidade própria e dedicação ao artesanato.</p>
+            <a href="https://niviapimentaceramica.com/" class="cta-button">Ver Todos os Produtos</a>
+        </div>
+        <div class="hero-image">
+            <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAIBAQIBAQICAgICAgICAwUDAwwUAxMTAxMTAxMTAxMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTH/2wBDAQICAgMDAwYDAwYMCAcIDAwICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICH/wAARCADIAMgDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWm5ybnJ2eoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlbaWmJ2eoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD9/KKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigD/2Q==" alt="Vaso Cerâmica Artesanal">
+        </div>
+    </section>
+
+    <!-- HIGHLIGHTS SECTION -->
+    <section class="highlights">
+        <div class="highlights-grid">
+            <div class="highlight-item">
+                <h3>Feito à Mão</h3>
+                <p>Cada peça é moldada manualmente com dedicação e cuidado pela artesã Nivia Pimenta</p>
+            </div>
+            <div class="highlight-item">
+                <h3>Design Único</h3>
+                <p>Geo Design com formas geométricas sofisticadas que convidam ao toque e à interação</p>
+            </div>
+            <div class="highlight-item">
+                <h3>Sustentável</h3>
+                <p>Produzido com argila natural, seguindo práticas conscientes e sustentáveis</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section class="about" id="sobre">
+        <div class="about-container">
+            <h2>Sobre o Vaso</h2>
+            <div class="about-text">
+                <p>
+                    Este vaso cerâmico é muito mais que um objeto decorativo. Representa a dedicação de <strong>Nivia Pimenta</strong>, uma artista que dedica sua criatividade à valorização da própria identidade, da liberdade criativa como mulher empreendedora e do respeito pela cultura local.
+                </p>
+                <p>
+                    O vaso combina <strong>simplicidade e sofisticação</strong>. Seu design geométrico traz elegância orgânica que convida ao toque, enquanto a paleta neutra em tons de branco, bege e cinza reflete a pureza da argila e o acabamento refinado da peça.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- GALLERY SECTION -->
+    <section class="gallery" id="galeria">
+        <div class="gallery-container">
+            <h2>Galeria</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAIBAQIBAQICAgICAgICAwUDAwwUAxMTAxMTAxMTAxMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTH/2wBDAQICAgMDAwYDAwYMCAcIDAwICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICH/wAARCADIAMgDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWm5ybnJ2eoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlbaWmJ2eoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD9/KKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigD/2Q==" alt="Detalhe 1">
+                </div>
+                <div class="gallery-item">
+                    <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAIBAQIBAQICAgICAgICAwUDAwwUAxMTAxMTAxMTAxMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTH/2wBDAQICAgMDAwYDAwYMCAcIDAwICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICH/wAARCADIAMgDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWm5ybnJ2eoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlbaWmJ2eoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD9/KKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigD/2Q==" alt="Detalhe 2">
+                </div>
+                <div class="gallery-item">
+                    <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAIBAQIBAQICAgICAgICAwUDAwwUAxMTAxMTAxMTAxMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTH/2wBDAQICAgMDAwYDAwYMCAcIDAwICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICH/wAARCADIAMgDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWm5ybnJ2eoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlbaWmJ2eoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD9/KKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigD/2Q==" alt="Detalhe 3">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DESIGN SECTION -->
+    <section class="design">
+        <h2>Design Geométrico</h2>
+        <div class="design-grid">
+            <div class="design-specs">
+                <div class="spec-item">
+                    <h3>Conceito</h3>
+                    <p>Geo Design - As formas geométricas trazem elegância orgânica. Cada ângulo e curva convidam ao toque e à interação sensorial com a peça.</p>
+                </div>
+                <div class="spec-item">
+                    <h3>Paleta de Cores</h3>
+                    <p>Tons naturais e neutros: brancos, bege e cinzas claros e escuros. Uma paleta que reflete a pureza da argila.</p>
+                </div>
+                <div class="spec-item">
+                    <h3>Acabamento</h3>
+                    <p>Interior liso e refinado em tons claros. Exterior rústico que preserva a marca da mão da artesã.</p>
+                </div>
+                <div class="spec-item">
+                    <h3>Sensação</h3>
+                    <p>Simplicidade e sofisticação juntas. Leveza e harmonia emanam de cada detalhe.</p>
+                </div>
+            </div>
+            <div class="design-image">
+                <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAIBAQIBAQICAgICAgICAwUDAwwUAxMTAxMTAxMTAxMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTH/2wBDAQICAgMDAwYDAwYMCAcIDAwICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICH/wAARCADIAMgDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWm5ybnJ2eoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlbaWmJ2eoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD9/KKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigD/2Q==" alt="Detalhe do Design">
+            </div>
+        </div>
+    </section>
+
+    <!-- ARTIST SECTION -->
+    <section class="artist">
+        <div class="artist-container">
+            <h2>Sobre a Artista</h2>
+            <p class="artist-bio">
+                <strong>Nivia Pimenta</strong> é uma ceramista artesã que dedica sua criatividade à produção de peças únicas feitas à mão. Sua trajetória reflete anos de dedicação, inspiração e busca constante pela excelência. Cada peça celebra a liberdade criativa, a valorização da identidade própria como mulher artista e empreendedora, e o respeito pela cultura local. Tudo nasce do encontro entre mãos, terra, fogo e coração.
+            </p>
+        </div>
+    </section>
+
+    <!-- CTA SECTION -->
+    <section class="cta-section">
+        <h2>Conheça Mais Peças Autorais</h2>
+        <p>Visite a loja completa de Nivia Pimenta Cerâmica e descubra uma coleção exclusiva de joias e peças decorativas feitas à mão com dedicação e inspiração.</p>
+        <a href="https://niviapimentaceramica.com/" class="cta-button-white">Ir para a Loja</a>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2024 Nivia Pimenta Ceramica. Todos os direitos reservados.</p>
+        <p style="margin-top: 1rem;">Ateliê de Cerâmica Autoral - Núcleo Rural Lago Oeste, Brasília</p>
+        <p style="margin-top: 0.5rem;"><a href="https://niviapimentaceramica.com/">Voltar à Loja Principal</a></p>
+    </footer>
+
+</body>
+</html>
