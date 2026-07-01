@@ -239,7 +239,7 @@
             line-height: 1.7;
         }
 
-        /* GALLERY SECTION */
+        /* GALLERY SECTION - CAROUSEL */
         .gallery {
             background-color: var(--primary-white);
             padding: 5rem 2rem;
@@ -258,30 +258,111 @@
             color: var(--primary-black);
         }
 
+        /* Carousel */
+        .carousel-wrapper {
+            position: relative;
+            width: 100%;
+            margin: 0 auto;
+            overflow: hidden;
+            background-color: var(--primary-white);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+
         .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
+            display: flex;
+            transition: transform 0.5s ease;
+            width: 100%;
         }
 
         .gallery-item {
-            position: relative;
-            overflow: hidden;
+            flex: 0 0 calc(25% - 0.5rem);
             aspect-ratio: 1;
+            overflow: hidden;
+            position: relative;
             cursor: pointer;
             background-color: var(--primary-white);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            margin-right: 0.5rem;
+        }
+
+        .gallery-item:last-child {
+            margin-right: 0;
         }
 
         .gallery-item img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            display: block;
             transition: transform 0.4s ease;
         }
 
         .gallery-item:hover img {
-            transform: scale(1.08);
+            transform: scale(1.05);
+        }
+
+        /* Navigation buttons */
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 1rem 1.2rem;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            z-index: 10;
+        }
+
+        .carousel-btn:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        .carousel-btn.prev {
+            left: 1rem;
+        }
+
+        .carousel-btn.next {
+            right: 1rem;
+        }
+
+        /* Indicators */
+        .carousel-indicators {
+            position: absolute;
+            bottom: 1rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 0.8rem;
+            z-index: 10;
+        }
+
+        .indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            border: none;
+            padding: 0;
+        }
+
+        .indicator.active {
+            background-color: white;
+        }
+
+        .indicator:hover {
+            background-color: rgba(255, 255, 255, 0.8);
+        }
+
+        /* RESPONSIVE - Mobile */
+        @media (max-width: 768px) {
+            .gallery-item {
+                flex: 0 0 calc(50% - 0.25rem);
+                margin-right: 0.25rem;
+            }
         }
 
         /* DESIGN SECTION */
@@ -465,11 +546,6 @@
                 gap: 2rem;
             }
 
-            .gallery-grid {
-                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-                gap: 1.5rem;
-            }
-
             .about h2,
             .gallery h2,
             .design h2,
@@ -494,10 +570,6 @@
 
             .hero-content h1 {
                 font-size: 1.8rem;
-            }
-
-            .gallery-grid {
-                grid-template-columns: 1fr;
             }
 
             .cta-section h2 {
@@ -570,20 +642,38 @@
         </div>
     </section>
 
-    <!-- GALLERY SECTION -->
+    <!-- GALLERY SECTION - CAROUSEL -->
     <section class="gallery" id="galeria">
         <div class="gallery-container">
             <h2>Galeria</h2>
-            <div class="gallery-grid">
-                <div class="gallery-item">
-                    <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAIBAQIBAQICAgICAgICAwUDAwwUAxMTAxMTAxMTAxMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTH/2wBDAQICAgMDAwYDAwYMCAcIDAwICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICH/wAARCADIAMgDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWm5ybnJ2eoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlbaWmJ2eoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD9/KKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigD/2Q==" alt="Detalhe 1">
+            <div class="carousel-wrapper">
+                <div class="gallery-grid" id="carousel">
+                    <div class="gallery-item">
+                        <img src="https://dcdn-us.mitiendanube.com/stores/005/328/570/products/20260630_124103-58b2dc75f30dde23f417829416109917-640-0.webp" alt="Vaso - Ângulo 1">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://dcdn-us.mitiendanube.com/stores/005/328/570/products/20260630_124734-a4aaa3c66c82c1eaf417829416109915-640-0.webp" alt="Vaso - Ângulo 2">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://dcdn-us.mitiendanube.com/stores/005/328/570/products/20260630_124749-b3a76d693ca91824a417829416109908-640-0.webp" alt="Vaso - Ângulo 3">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://dcdn-us.mitiendanube.com/stores/005/328/570/products/20260630_124123-f0a89b9d64819ca8f417829416109910-640-0.webp" alt="Vaso - Ângulo 4">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://dcdn-us.mitiendanube.com/stores/005/328/570/products/20260630_124746-872f15be02ceae28f417829416109911-640-0.webp" alt="Vaso - Ângulo 5">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://dcdn-us.mitiendanube.com/stores/005/328/570/products/20260630_124754-87e37a5c635835c9f417829416109909-640-0.webp" alt="Vaso - Ângulo 6">
+                    </div>
                 </div>
-                <div class="gallery-item">
-                    <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAIBAQIBAQICAgICAgICAwUDAwwUAxMTAxMTAxMTAxMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTH/2wBDAQICAgMDAwYDAwYMCAcIDAwICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICH/wAARCADIAMgDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWm5ybnJ2eoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlbaWmJ2eoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD9/KKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigD/2Q==" alt="Detalhe 2">
-                </div>
-                <div class="gallery-item">
-                    <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAIBAQIBAQICAgICAgICAwUDAwwUAxMTAxMTAxMTAxMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTH/2wBDAQICAgMDAwYDAwYMCAcIDAwICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICH/wAARCADIAMgDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWm5ybnJ2eoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlbaWmJ2eoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD9/KKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigD/2Q==" alt="Detalhe 3">
-                </div>
+                
+                <!-- Carousel Controls -->
+                <button class="carousel-btn prev" id="prevBtn">❮</button>
+                <button class="carousel-btn next" id="nextBtn">❯</button>
+                
+                <!-- Indicators -->
+                <div class="carousel-indicators" id="indicators"></div>
             </div>
         </div>
     </section>
@@ -611,7 +701,7 @@
                 </div>
             </div>
             <div class="design-image">
-                <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAIBAQIBAQICAgICAgICAwUDAwwUAxMTAxMTAxMTAxMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTH/2wBDAQICAgMDAwYDAwYMCAcIDAwICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICH/wAARCADIAMgDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWm5ybnJ2eoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlbaWmJ2eoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD9/KKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigD/2Q==" alt="Detalhe do Design">
+                <img src="https://dcdn-us.mitiendanube.com/stores/005/328/570/products/20260630_124746-872f15be02ceae28f417829416109911-640-0.webp" alt="Detalhe do Design">
             </div>
         </div>
     </section>
@@ -639,6 +729,79 @@
         <p style="margin-top: 1rem;">Ateliê de Cerâmica Autoral - Núcleo Rural Lago Oeste, Brasília</p>
         <p style="margin-top: 0.5rem;"><a href="https://niviapimentaceramica.com/">Voltar à Loja Principal</a></p>
     </footer>
+
+    <!-- CAROUSEL JAVASCRIPT -->
+    <script>
+        let currentIndex = 0;
+        const carousel = document.getElementById('carousel');
+        const items = document.querySelectorAll('.gallery-item');
+        const totalItems = items.length;
+        const indicatorsContainer = document.getElementById('indicators');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+
+        // Create indicators (um por imagem)
+        for (let i = 0; i < totalItems; i++) {
+            const indicator = document.createElement('button');
+            indicator.className = 'indicator' + (i === 0 ? ' active' : '');
+            indicator.addEventListener('click', () => goToSlide(i));
+            indicatorsContainer.appendChild(indicator);
+        }
+
+        const indicators = document.querySelectorAll('.indicator');
+
+        function getItemsPerView() {
+            // Retorna quantas imagens aparecem de uma vez
+            return window.innerWidth <= 768 ? 2 : 4;
+        }
+
+        function updateCarousel() {
+            const itemsPerView = getItemsPerView();
+            const itemWidth = 100 / itemsPerView;
+            carousel.style.transform = `translateX(-${currentIndex * itemWidth}%)`;
+            
+            // Atualizar indicadores
+            indicators.forEach((indicator, index) => {
+                indicator.classList.toggle('active', index === currentIndex);
+            });
+        }
+
+        function nextSlide() {
+            const itemsPerView = getItemsPerView();
+            const maxIndex = totalItems - itemsPerView;
+            currentIndex = currentIndex >= maxIndex ? 0 : currentIndex + 1;
+            updateCarousel();
+        }
+
+        function prevSlide() {
+            const itemsPerView = getItemsPerView();
+            const maxIndex = totalItems - itemsPerView;
+            currentIndex = currentIndex <= 0 ? maxIndex : currentIndex - 1;
+            updateCarousel();
+        }
+
+        function goToSlide(index) {
+            currentIndex = index;
+            updateCarousel();
+        }
+
+        // Button event listeners
+        nextBtn.addEventListener('click', nextSlide);
+        prevBtn.addEventListener('click', prevSlide);
+
+        // Auto-play carousel - 3 segundos
+        let autoPlayInterval = setInterval(nextSlide, 3000);
+
+        // Pause auto-play on hover
+        const carouselWrapper = document.querySelector('.carousel-wrapper');
+        carouselWrapper.addEventListener('mouseenter', () => clearInterval(autoPlayInterval));
+        carouselWrapper.addEventListener('mouseleave', () => {
+            autoPlayInterval = setInterval(nextSlide, 3000);
+        });
+
+        // Atualizar ao redimensionar
+        window.addEventListener('resize', updateCarousel);
+    </script>
 
 </body>
 </html>
