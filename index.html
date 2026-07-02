@@ -41,14 +41,29 @@
             width: 100%;
             background-color: var(--primary-white);
             border-bottom: 1px solid var(--light-gray);
-            padding: 1.2rem 2rem;
+            padding: 0 2rem;
+            height:80px;
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             align-items: center;
             z-index: 1000;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
         }
 
+        .nav-logo img{
+            max-height:55px;
+            width:auto;
+            display:block;
+        }
+        .mobile-back{
+            display:none;
+            position:absolute;
+            left:20px;
+            color:var(--accent-red);
+            text-decoration:none;
+            font-weight:600;
+        }
+        .nav-links{position:absolute;right:30px;}
         .nav-brand {
             font-size: 1.1rem;
             font-weight: 600;
@@ -103,7 +118,7 @@
 
         /* HERO SECTION */
         .hero {
-            margin-top: 30px;
+            margin-top: 80px;
             min-height: 80vh;
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -528,8 +543,12 @@
                 display: none;
             }
 
+            .mobile-back {
+                display:block;
+            }
+
             .menu-toggle {
-                display: flex;
+                display: none;
             }
 
             .about-text {
@@ -560,12 +579,26 @@
                 padding: 1rem 1.5rem;
             }
 
-            .nav-brand {
+            .nav-logo img{
+            max-height:55px;
+            width:auto;
+            display:block;
+        }
+        .mobile-back{
+            display:none;
+            position:absolute;
+            left:20px;
+            color:var(--accent-red);
+            text-decoration:none;
+            font-weight:600;
+        }
+        .nav-links{position:absolute;right:30px;}
+        .nav-brand {
                 font-size: 0.9rem;
             }
 
             .hero {
-                margin-top: 70px;
+                margin-top: 90px;
                 padding: 1.5rem 1rem;
             }
 
@@ -586,15 +619,13 @@
 <body>
     <!-- NAVBAR -->
     <nav>
-        <a href="#" class="nav-brand">Nivia Pimenta Ceramica</a>
+        <a href="https://niviapimentaceramica.com/" class="mobile-back">← Voltar</a>
+        <a href="https://niviapimentaceramica.com/" class="nav-logo">
+            <img src="https://dcdn-us.mitiendanube.com/stores/005/328/570/themes/common/logo-448075726-1750873795-1fcc2e86be9b3423ccff6415d2fd0da71750873795-480-0.webp" alt="Logo">
+        </a>
         <ul class="nav-links">
             <li><a href="https://niviapimentaceramica.com/" class="back-link">← Voltar à Loja</a></li>
         </ul>
-        <div class="menu-toggle">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
     </nav>
 
     <!-- HERO SECTION -->
