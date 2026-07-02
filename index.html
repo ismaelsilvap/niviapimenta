@@ -615,7 +615,13 @@
         a {
             transition: color 0.3s ease;
         }
-    </style>
+    
+<style>
+.lightbox{display:none;position:fixed;z-index:9999;left:0;top:0;width:100%;height:100%;background:rgba(0,0,0,.9);justify-content:center;align-items:center;padding:20px}
+.lightbox img{max-width:95%;max-height:95%;object-fit:contain}
+.lightbox .close{position:absolute;top:20px;right:30px;font-size:40px;color:#fff;cursor:pointer}
+</style>
+</style>
 </head>
 <body>
     <!-- NAVBAR -->
@@ -763,6 +769,12 @@
         <p style="margin-top: 0.5rem;"><a href="https://niviapimentaceramica.com/">Voltar à Loja Principal</a></p>
     </footer>
 
+<div class="lightbox" id="lightbox">
+<span class="close">&times;</span>
+<img id="lightboxImg" src="" alt="">
+</div>
+
+
     <!-- CAROUSEL JAVASCRIPT -->
     <script>
         let currentIndex = 0;
@@ -834,7 +846,20 @@
 
         // Atualizar ao redimensionar
         window.addEventListener('resize', updateCarousel);
-    </script>
+    
+const lightbox=document.getElementById('lightbox');
+const lightboxImg=document.getElementById('lightboxImg');
+document.querySelectorAll('.gallery-item img').forEach(img=>{
+ img.addEventListener('click',()=>{
+   lightbox.style.display='flex';
+   lightboxImg.src=img.src;
+ });
+});
+lightbox.addEventListener('click',e=>{
+ if(e.target===lightbox||e.target.classList.contains('close')) lightbox.style.display='none';
+});
+
+</script>
 
 </body>
 </html>
