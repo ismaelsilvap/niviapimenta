@@ -20,7 +20,7 @@
             --light-gray: #f5f5f5;
             --medium-gray: #999999;
             --dark-gray: #333333;
-            --accent-red: ##75645d;
+            --accent-red: #75645d;
             --accent-blue: #1976d2;
             --accent-purple: #7c3aed;
             --navbar-color: #E5E6D8;
@@ -45,34 +45,66 @@
             background-color: var(--navbar-color);
             border-bottom: 1px solid var(--light-gray);
             padding: 0 2rem;
-            height:90px;
+            height: 90px;
             display: flex;
-            justify-content: center;
+            justify-content: space-between;
             align-items: center;
             z-index: 1000;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
         }
 
-        .nav-logo img{
-            max-height:90px;
-            width:auto;
-            display:block;
+        .nav-logo img {
+            max-height: 90px;
+            width: auto;
+            display: block;
         }
-        .mobile-back{
-            display: none;
-            position:absolute;
-            left:11px;
-            color:var(--accent-red);
-            text-decoration:none;
-            font-weight:600;
+
+        .nav-center {
+            display: flex;
+            justify-content: center;
+            flex: 1;
         }
-        .nav-links{position:absolute;right:30px;}
+
         .nav-brand {
             font-size: 1.1rem;
             font-weight: 600;
             color: var(--primary-black);
             text-decoration: none;
             letter-spacing: 0.5px;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .language-switcher {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .language-btn {
+            padding: 0.5rem 1rem;
+            background-color: transparent;
+            border: 1px solid var(--primary-black);
+            color: var(--primary-black);
+            cursor: pointer;
+            font-weight: 500;
+            font-size: 0.85rem;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .language-btn.active {
+            background-color: var(--primary-black);
+            color: var(--primary-white);
+            border-color: var(--primary-black);
+        }
+
+        .language-btn:hover {
+            background-color: var(--primary-black);
+            color: var(--primary-white);
         }
 
         .nav-links {
@@ -93,15 +125,6 @@
 
         .nav-links a:hover {
             color: var(--accent-red);
-        }
-
-        .nav-links .back-link {
-            color: var(--accent-red);
-            font-weight: 600;
-        }
-
-        .nav-links .back-link:hover {
-            color: var(--primary-black);
         }
 
         /* MOBILE MENU */
@@ -145,7 +168,7 @@
         .hero-content .subtitle {
             font-size: 0.9rem;
             color: var(--medium-gray);
-            margin-bottom: 0rem;
+            margin-bottom: 1rem;
             letter-spacing: 1px;
             text-transform: uppercase;
             font-weight: 500;
@@ -160,7 +183,7 @@
         }
 
         .cta-button {
-            display: none;
+            display: inline-block;
             padding: 1rem 2.5rem;
             background-color: var(--accent-red);
             color: var(--primary-white);
@@ -171,6 +194,7 @@
             transition: all 0.3s ease;
             border: none;
             cursor: pointer;
+            border-radius: 4px;
         }
 
         .cta-button:hover {
@@ -227,39 +251,9 @@
             font-weight: 600;
         }
 
-        /* HIGHLIGHTS SECTION */
-        .highlights {
-            padding: 1rem 1rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .highlights-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-        }
-
-        .highlight-item {
-            text-align: center;
-        }
-
-        .highlight-item h3 {
-            font-size: 1.2rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            color: var(--primary-black);
-        }
-
-        .highlight-item p {
-            font-size: 0.9rem;
-            color: var(--medium-gray);
-            line-height: 1.7;
-        }
-
-        /* GALLERY SECTION - CAROUSEL */
+        /* GALLERY SECTION */
         .gallery {
-            background-color: var(--primary-white);
+            background-color: #fafafa;
             padding: 5rem 2rem;
         }
 
@@ -272,53 +266,40 @@
             font-size: 2.5rem;
             font-weight: 700;
             margin-bottom: 3rem;
-            text-align: center;
             color: var(--primary-black);
+            text-align: center;
         }
 
-        /* Carousel */
         .carousel-wrapper {
             position: relative;
-            width: 100%;
-            margin: 0 auto;
             overflow: hidden;
-            background-color: var(--primary-white);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
         }
 
         .gallery-grid {
-            display: flex;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
             transition: transform 0.5s ease;
-            width: 100%;
         }
 
         .gallery-item {
-            flex: 0 0 calc(25% - 0.5rem);
-            aspect-ratio: 9/16;
-            overflow: hidden;
-            position: relative;
             cursor: pointer;
-            background-color: var(--primary-white);
-            margin-right: 0.5rem;
-        }
-
-        .gallery-item:last-child {
-            margin-right: 0;
+            overflow: hidden;
+            border-radius: 8px;
+            aspect-ratio: 1;
         }
 
         .gallery-item img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            display: block;
-            transition: transform 0.4s ease;
+            transition: transform 0.3s ease;
         }
 
         .gallery-item:hover img {
             transform: scale(1.05);
         }
 
-        /* Navigation buttons */
         .carousel-btn {
             position: absolute;
             top: 50%;
@@ -326,128 +307,104 @@
             background-color: rgba(0, 0, 0, 0.5);
             color: white;
             border: none;
-            padding: 1rem 1.2rem;
-            font-size: 1.5rem;
+            padding: 1rem;
             cursor: pointer;
+            font-size: 1.5rem;
+            border-radius: 4px;
             transition: background-color 0.3s ease;
             z-index: 10;
         }
 
         .carousel-btn:hover {
-            background-color: rgba(0, 0, 0, 0.8);
+            background-color: rgba(0, 0, 0, 0.7);
         }
 
         .carousel-btn.prev {
-            left: 1rem;
+            left: 10px;
         }
 
         .carousel-btn.next {
-            right: 1rem;
+            right: 10px;
         }
 
-        /* Indicators */
         .carousel-indicators {
-            position: absolute;
-            bottom: 1rem;
-            left: 50%;
-            transform: translateX(-50%);
             display: flex;
-            gap: 0.8rem;
-            z-index: 10;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 2rem;
         }
 
         .indicator {
             width: 12px;
             height: 12px;
             border-radius: 50%;
-            background-color: rgba(255, 255, 255, 0.5);
+            background-color: #ddd;
+            border: none;
             cursor: pointer;
             transition: background-color 0.3s ease;
-            border: none;
-            padding: 0;
         }
 
         .indicator.active {
-            background-color: white;
-        }
-
-        .indicator:hover {
-            background-color: rgba(255, 255, 255, 0.8);
-        }
-
-        /* RESPONSIVE - Mobile */
-        @media (max-width: 768px) {
-            .gallery-item {
-                flex: 0 0 calc(95% - 0.25rem);
-                aspect-ratio: 9/16;
-                margin-right: 0.25rem;
-            }
+            background-color: var(--primary-black);
         }
 
         /* DESIGN SECTION */
         .design {
+            background-color: var(--primary-white);
             padding: 5rem 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
         }
 
         .design h2 {
             font-size: 2.5rem;
             font-weight: 700;
             margin-bottom: 3rem;
-            text-align: center;
             color: var(--primary-black);
+            text-align: center;
         }
 
         .design-grid {
+            max-width: 1200px;
+            margin: 0 auto;
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 4rem;
+            gap: 3rem;
             align-items: center;
         }
 
         .design-specs {
-            display: flex;
-            flex-direction: column;
-            gap: 2.5rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
         }
 
         .spec-item h3 {
-            font-size: 1rem;
-            font-weight: 700;
+            font-size: 1.1rem;
+            font-weight: 600;
             color: var(--primary-black);
-            margin-bottom: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
         }
 
         .spec-item p {
-            font-size: 0.95rem;
-            line-height: 1.8;
+            font-size: 0.9rem;
+            line-height: 1.7;
             color: var(--dark-gray);
-        }
-
-        .design-image {
-            display: flex;
-            justify-content: center;
         }
 
         .design-image img {
             width: 100%;
-            max-width: 350px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            border-radius: 8px;
         }
 
         /* ARTIST SECTION */
         .artist {
-            background-color: var(--light-gray);
+            background-color: #fafafa;
             padding: 5rem 2rem;
         }
 
         .artist-container {
             max-width: 900px;
             margin: 0 auto;
-            text-align: center;
         }
 
         .artist h2 {
@@ -455,12 +412,14 @@
             font-weight: 700;
             margin-bottom: 2rem;
             color: var(--primary-black);
+            text-align: center;
         }
 
         .artist-bio {
-            font-size: 1rem;
+            font-size: 0.95rem;
             line-height: 1.9;
             color: var(--dark-gray);
+            white-space: pre-wrap;
         }
 
         .artist-bio strong {
@@ -470,25 +429,26 @@
 
         /* CTA SECTION */
         .cta-section {
+            background: linear-gradient(135deg, var(--navbar-color) 0%, var(--light-gray) 100%);
             padding: 5rem 2rem;
-            background: linear-gradient(135deg, var(--primary-black) 0%, var(--dark-gray) 100%);
-            color: var(--primary-white);
             text-align: center;
+            max-width: 100%;
         }
 
         .cta-section h2 {
-            font-size: 2.2rem;
+            font-size: 2rem;
             font-weight: 700;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-black);
         }
 
         .cta-section p {
-            font-size: 1.1rem;
+            font-size: 1rem;
+            color: var(--dark-gray);
             margin-bottom: 2rem;
             max-width: 600px;
             margin-left: auto;
             margin-right: auto;
-            line-height: 1.8;
         }
 
         .cta-button-white {
@@ -500,187 +460,148 @@
             font-weight: 600;
             font-size: 0.9rem;
             letter-spacing: 0.5px;
+            border-radius: 4px;
             transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
         }
 
         .cta-button-white:hover {
-            background-color: var(--primary-white);
-            color: var(--primary-black);
+            background-color: var(--primary-black);
+            transform: translateY(-2px);
         }
 
         /* FOOTER */
         footer {
-            display: none;
             background-color: var(--primary-black);
-            color: var(--medium-gray);
-            padding: 3rem 2rem;
+            color: var(--primary-white);
+            padding: 2rem;
             text-align: center;
-            font-size: 0.85rem;
+            font-size: 0.9rem;
         }
 
         footer a {
             color: var(--primary-white);
             text-decoration: none;
-            transition: color 0.3s ease;
         }
 
         footer a:hover {
-            color: var(--accent-red);
+            text-decoration: underline;
+        }
+
+        /* LIGHTBOX */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .lightbox img {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+        }
+
+        .close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .close:hover {
+            color: #bbb;
         }
 
         /* RESPONSIVE */
         @media (max-width: 768px) {
             .hero {
                 grid-template-columns: 1fr;
-                margin-top: 80px;
-                gap: 2rem;
-                padding: 2rem 1.5rem;
+                margin-top: 100px;
             }
 
             .hero-content h1 {
-                font-size: 2.2rem;
+                font-size: 2.5rem;
+            }
+
+            .about-text {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .design-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .design-specs {
+                grid-template-columns: 1fr;
             }
 
             .nav-links {
                 display: none;
             }
 
-            .mobile-back {
-                display:block;
+            .language-switcher {
+                gap: 0.25rem;
             }
 
-            .menu-toggle {
-                display: none;
-            }
-
-            .about-text {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
-
-            .highlights-grid {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-
-            .design-grid {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-
-            .about h2,
-            .gallery h2,
-            .design h2,
-            .artist h2 {
-                font-size: 1.8rem;
+            .language-btn {
+                padding: 0.4rem 0.8rem;
+                font-size: 0.75rem;
             }
         }
-
-        @media (max-width: 375px) {
-            nav {
-                padding: 1rem 1.5rem;
-            }
-
-            .nav-logo img{
-            max-height:55px;
-            width:auto;
-            display:block;
-        }
-        .mobile-back{
-            display:none;
-            position:absolute;
-            left:20px;
-            color:var(--accent-red);
-            text-decoration:none;
-            font-weight:600;
-        }
-        .nav-links{position:absolute;right:30px;}
-        .nav-brand {
-                font-size: 0.9rem;
-            }
-
-            .hero {
-                margin-top: 90px;
-                padding: 1.5rem 1rem;
-            }
-
-            .hero-content h1 {
-                font-size: 1.8rem;
-            }
-
-            .cta-section h2 {
-                font-size: 1.6rem;
-            }
-        }
-
-        a {
-            transition: color 0.3s ease;
-        }
-    
-.lightbox{display:none;position:fixed;z-index:9999;left:0;top:0;width:100%;height:100%;background:rgba(0,0,0,.9);justify-content:center;align-items:center;padding:20px}
-.lightbox img{max-width:95%;max-height:95%;object-fit:contain}
-.lightbox .close{position:absolute;top:20px;right:30px;font-size:40px;color:#fff;cursor:pointer}
-
-.language-switcher{position:fixed;top:100px;right:20px;z-index:9998;display:flex;gap:8px}.language-switcher button{background:#fff;border:1px solid #ccc;padding:8px 12px;cursor:pointer;border-radius:20px;font-weight:600}.language-switcher button.active{background:#75645d;color:#fff;border-color:#75645d}
-</style>
+    </style>
 </head>
 <body>
-<div class="language-switcher"><button id="btn-pt" class="active" onclick="setLanguage('pt')">PT</button><button id="btn-en" onclick="setLanguage('en')">EN</button></div>
 
     <!-- NAVBAR -->
     <nav>
-        <a href="https://niviapimentaceramica.com/" class="mobile-back">← Voltar à Loja</a>
-        <a href="https://niviapimentaceramica.com/" class="nav-logo">
-            <img src="https://dcdn-us.mitiendanube.com/stores/005/328/570/themes/common/logo-448075726-1750873795-1fcc2e86be9b3423ccff6415d2fd0da71750873795-480-0.webp" alt="Logo">
-        </a>
-        <ul class="nav-links">
-            <li><a href="https://niviapimentaceramica.com/" class="back-link">← Voltar à Loja</a></li>
-        </ul>
+        <div class="nav-logo">
+            <img src="https://d1a9qnv764bsoo.cloudfront.net/stores/005/328/570/themes/common/logo-4812530-1750023015-6820c8a84e5bda33772be4cca84311901750023015.ico?0" alt="Nivia Pimenta">
+        </div>
+        <div class="nav-center">
+            <a href="#" class="nav-brand">Nivia Pimenta</a>
+        </div>
+        <div class="nav-right">
+            <div class="language-switcher">
+                <button id="btn-pt" class="language-btn active" onclick="setLanguage('pt')">PT</button>
+                <button id="btn-en" class="language-btn" onclick="setLanguage('en')">EN</button>
+            </div>
+        </div>
     </nav>
 
     <!-- HERO SECTION -->
-    <section class="hero" id="inicio">
+    <section class="hero">
         <div class="hero-content">
-            <h1 data-pt="Vaso Cerâmica" data-en="Ceramic Vase">Vaso Cerâmica</h1>
-            <p data-pt="Peça única feita à mão por Nivia Pimenta. Design geométrico sofisticado que traz leveza, harmonia e a marca autêntica da criatividade de uma artista mulher. Cada vaso é uma celebração de identidade própria e dedicação ao artesanato." data-en="A unique handmade piece by Nivia Pimenta. A sophisticated geometric design that brings lightness, harmony, and the authentic signature of a female artist's creativity. Each vase celebrates identity and dedication to craftsmanship.">Peça única feita à mão por Nivia Pimenta. Design geométrico sofisticado que traz leveza, harmonia e a marca autêntica da criatividade de uma artista mulher. Cada vaso é uma celebração de identidade própria e dedicação ao artesanato.</p>
-            <a href="https://niviapimentaceramica.com/" class="cta-button">Ver Todos os Produtos</a>
+            <p class="subtitle" data-pt="Cerâmica Autoral" data-en="Authorial Ceramics">Cerâmica Autoral</p>
+            <h1 data-pt="Vaso Geométrico" data-en="Geometric Vase">Vaso Geométrico</h1>
+            <p data-pt="Uma peça única que combina a simplicidade das formas geométricas com a sofisticação artesanal. Cada detalhe reflete a dedicação e criatividade da artista Nivia Pimenta." data-en="A unique piece that combines the simplicity of geometric shapes with artisanal sophistication. Every detail reflects the dedication and creativity of artist Nivia Pimenta.">Uma peça única que combina a simplicidade das formas geométricas com a sofisticação artesanal. Cada detalhe reflete a dedicação e criatividade da artista Nivia Pimenta.</p>
+            <a href="https://niviapimentaceramica.com/" class="cta-button" data-pt="Conheça Mais" data-en="Learn More">Conheça Mais</a>
         </div>
         <div class="hero-image">
-            <img src="https://dcdn-us.mitiendanube.com/stores/005/328/570/products/20260630_124749-b3a76d693ca91824a417829416109908-640-0.webp" alt="Vaso Cerâmica Artesanal">
-        </div>
-    </section>
-
-    <!-- HIGHLIGHTS SECTION -->
-    <section class="highlights">
-        <div class="highlights-grid">
-            <div class="highlight-item">
-                <h3>Feito à Mão</h3>
-                <p>Cada peça é moldada manualmente com dedicação e cuidado pela artesã Nivia Pimenta</p>
-            </div>
-            <div class="highlight-item">
-                <h3>Design Único</h3>
-                <p>Geo Design com formas geométricas sofisticadas que convidam ao toque e à interação</p>
-            </div>
-            <div class="highlight-item">
-                <h3>Sustentável</h3>
-                <p>Produzido com argila natural, seguindo práticas conscientes e sustentáveis</p>
-            </div>
+            <img src="https://dcdn-us.mitiendanube.com/stores/005/328/570/products/whatsapp-image-2026-06-30-at-13-20-55-7bd0b828ea6716dfc017829524095873.jpg" alt="Vaso Geométrico">
         </div>
     </section>
 
     <!-- ABOUT SECTION -->
-    <section class="about" id="sobre">
+    <section class="about">
         <div class="about-container">
-            <h2 data-pt="Sobre o Vaso" data-en="About the Vase">Sobre o Vaso</h2>
+            <h2 data-pt="Sobre a Peça" data-en="About the Piece">Sobre a Peça</h2>
             <div class="about-text">
-                <p>
-                    Este vaso cerâmico é muito mais que um objeto decorativo. Representa a dedicação de <strong>Nivia Pimenta</strong>, uma artista que dedica sua criatividade à valorização da própria identidade, da liberdade criativa como mulher empreendedora e do respeito pela cultura local.
-                </p>
-                <p>
-                    O vaso combina <strong>simplicidade e sofisticação</strong>. Seu design geométrico traz elegância orgânica que convida ao toque, enquanto a paleta neutra em tons de branco, bege e cinza reflete a pureza da argila e o acabamento refinado da peça.
-                </p>
+                <p data-pt="O vaso combina <strong>simplicidade e sofisticação</strong>. Seu design geométrico traz elegância orgânica que convida ao toque, enquanto a paleta neutra em tons de branco, bege e cinza reflete a pureza da argila e o acabamento refinado da peça." data-en="The vase combines <strong>simplicity and sophistication</strong>. Its geometric design brings organic elegance that invites touch, while the neutral palette in white, beige and gray tones reflects the purity of clay and the refined finish of the piece.">O vaso combina <strong>simplicidade e sofisticação</strong>. Seu design geométrico traz elegância orgânica que convida ao toque, enquanto a paleta neutra em tons de branco, bege e cinza reflete a pureza da argila e o acabamento refinado da peça.</p>
+                <p data-pt="Cada peça é produzida com <strong>dedicação artesanal</strong>, respeitando técnicas tradicionais de cerâmica e inovação constante. A marca da mão da artista está presente no exterior rústico, enquanto o interior liso e refinado convida à reflexão sobre a dualidade entre simplicidade e complexidade." data-en="Each piece is produced with <strong>artisanal dedication</strong>, respecting traditional ceramics techniques and constant innovation. The artist's hand mark is present on the rustic exterior, while the smooth and refined interior invites reflection on the duality between simplicity and complexity.">Cada peça é produzida com <strong>dedicação artesanal</strong>, respeitando técnicas tradicionais de cerâmica e inovação constante. A marca da mão da artista está presente no exterior rústico, enquanto o interior liso e refinado convida à reflexão sobre a dualidade entre simplicidade e complexidade.</p>
             </div>
         </div>
     </section>
@@ -727,20 +648,20 @@
         <div class="design-grid">
             <div class="design-specs">
                 <div class="spec-item">
-                    <h3>Conceito</h3>
-                    <p>Geo Design - As formas geométricas trazem elegância orgânica. Cada ângulo e curva convidam ao toque e à interação sensorial com a peça.</p>
+                    <h3 data-pt="Conceito" data-en="Concept">Conceito</h3>
+                    <p data-pt="Geo Design - As formas geométricas trazem elegância orgânica. Cada ângulo e curva convidam ao toque e à interação sensorial com a peça." data-en="Geo Design - Geometric shapes bring organic elegance. Each angle and curve invite touch and sensory interaction with the piece.">Geo Design - As formas geométricas trazem elegância orgânica. Cada ângulo e curva convidam ao toque e à interação sensorial com a peça.</p>
                 </div>
                 <div class="spec-item">
-                    <h3>Paleta de Cores</h3>
-                    <p>Tons naturais e neutros: brancos, bege e cinzas claros e escuros. Uma paleta que reflete a pureza da argila.</p>
+                    <h3 data-pt="Paleta de Cores" data-en="Color Palette">Paleta de Cores</h3>
+                    <p data-pt="Tons naturais e neutros: brancos, bege e cinzas claros e escuros. Uma paleta que reflete a pureza da argila." data-en="Natural and neutral tones: whites, beige and light and dark grays. A palette that reflects the purity of clay.">Tons naturais e neutros: brancos, bege e cinzas claros e escuros. Uma paleta que reflete a pureza da argila.</p>
                 </div>
                 <div class="spec-item">
-                    <h3>Acabamento</h3>
-                    <p>Interior liso e refinado em tons claros. Exterior rústico que preserva a marca da mão da artesã.</p>
+                    <h3 data-pt="Acabamento" data-en="Finish">Acabamento</h3>
+                    <p data-pt="Interior liso e refinado em tons claros. Exterior rústico que preserva a marca da mão da artesã." data-en="Smooth and refined interior in light tones. Rustic exterior that preserves the artist's hand mark.">Interior liso e refinado em tons claros. Exterior rústico que preserva a marca da mão da artesã.</p>
                 </div>
                 <div class="spec-item">
-                    <h3>Sensação</h3>
-                    <p>Simplicidade e sofisticação juntas. Leveza e harmonia emanam de cada detalhe.</p>
+                    <h3 data-pt="Sensação" data-en="Feel">Sensação</h3>
+                    <p data-pt="Simplicidade e sofisticação juntas. Leveza e harmonia emanam de cada detalhe." data-en="Simplicity and sophistication together. Lightness and harmony emanate from every detail.">Simplicidade e sofisticação juntas. Leveza e harmonia emanam de cada detalhe.</p>
                 </div>
             </div>
             <div class="design-image">
@@ -753,35 +674,28 @@
     <section class="artist">
         <div class="artist-container">
             <h2 data-pt="Sobre a Artista" data-en="About the Artist">Sobre a Artista</h2>
-            <p class="artist-bio">
-                <strong>Nivia Pimenta:</strong> "Esse Segmento de produção sempre esteve em pauta no meu trabalho, mas para mim é necessário dedicação, inspiração e tudo tem seu tempo certo. 
-
-As Joias em Cerâmica são meu foco desde o começo, cheguei num nível de excelência com elas, mas a possibilidade de continuar criando novas peças me entusiasma e motiva. Peças que exigem de mim muito mais técnica, tempo e Inovação. 
-
-A Criatividade em mim nasce num lugar de muita liberdade como Mulher, Artista, Empreendedora. Um posicionamento que busca a valorização da minha Identidade Própria, do lugar onde escolhi viver e da sua Cultura Local."
-            </p>
+            <p class="artist-bio" data-pt="<strong>Nivia Pimenta:</strong> &quot;Esse Segmento de produção sempre esteve em pauta no meu trabalho, mas para mim é necessário dedicação, inspiração e tudo tem seu tempo certo. As Joias em Cerâmica são meu foco desde o começo, cheguei num nível de excelência com elas, mas a possibilidade de continuar criando novas peças me entusiasma e motiva. Peças que exigem de mim muito mais técnica, tempo e Inovação. A Criatividade em mim nasce num lugar de muita liberdade como Mulher, Artista, Empreendedora. Um posicionamento que busca a valorização da minha Identidade Própria, do lugar onde escolhi viver e da sua Cultura Local.&quot;" data-en="<strong>Nivia Pimenta:</strong> &quot;This production segment has always been on the agenda in my work, but for me it requires dedication, inspiration and everything has its right time. Ceramic Jewelry has been my focus from the beginning, I reached a level of excellence with them, but the possibility of continuing to create new pieces excites and motivates me. Pieces that demand much more technique, time and Innovation from me. Creativity in me is born from a place of great freedom as a Woman, Artist, Entrepreneur. A positioning that seeks to value my Own Identity, the place where I chose to live and its Local Culture.&quot;"><strong>Nivia Pimenta:</strong> "Esse Segmento de produção sempre esteve em pauta no meu trabalho, mas para mim é necessário dedicação, inspiração e tudo tem seu tempo certo. As Joias em Cerâmica são meu foco desde o começo, cheguei num nível de excelência com elas, mas a possibilidade de continuar criando novas peças me entusiasma e motiva. Peças que exigem de mim muito mais técnica, tempo e Inovação. A Criatividade em mim nasce num lugar de muita liberdade como Mulher, Artista, Empreendedora. Um posicionamento que busca a valorização da minha Identidade Própria, do lugar onde escolhi viver e da sua Cultura Local."</p>
         </div>
     </section>
 
     <!-- CTA SECTION -->
     <section class="cta-section">
         <h2 data-pt="Conheça Mais Peças Autorais" data-en="Discover More Authorial Pieces">Conheça Mais Peças Autorais</h2>
-        <p>Visite a loja completa de Nivia Pimenta Cerâmica e descubra uma coleção exclusiva de joias e peças decorativas feitas à mão com dedicação e inspiração.</p>
-        <a href="https://niviapimentaceramica.com/" class="cta-button-white">Ir para a Loja</a>
+        <p data-pt="Visite a loja completa de Nivia Pimenta Cerâmica e descubra uma coleção exclusiva de joias e peças decorativas feitas à mão com dedicação e inspiração." data-en="Visit Nivia Pimenta Ceramics' complete store and discover an exclusive collection of jewelry and decorative pieces handmade with dedication and inspiration.">Visite a loja completa de Nivia Pimenta Cerâmica e descubra uma coleção exclusiva de joias e peças decorativas feitas à mão com dedicação e inspiração.</p>
+        <a href="https://niviapimentaceramica.com/" class="cta-button-white" data-pt="Ir para a Loja" data-en="Go to Store">Ir para a Loja</a>
     </section>
 
     <!-- FOOTER -->
     <footer>
-        <p>&copy; 2024 Nivia Pimenta Ceramica. Todos os direitos reservados.</p>
-        <p style="margin-top: 1rem;">Ateliê de Cerâmica Autoral - Núcleo Rural Lago Oeste, Brasília</p>
-        <p style="margin-top: 0.5rem;"><a href="https://niviapimentaceramica.com/">Voltar à Loja Principal</a></p>
+        <p data-pt="&copy; 2024 Nivia Pimenta Cerâmica. Todos os direitos reservados." data-en="&copy; 2024 Nivia Pimenta Ceramics. All rights reserved.">&copy; 2024 Nivia Pimenta Cerâmica. Todos os direitos reservados.</p>
+        <p style="margin-top: 1rem;" data-pt="Ateliê de Cerâmica Autoral - Núcleo Rural Lago Oeste, Brasília" data-en="Authorial Ceramics Studio - Núcleo Rural Lago Oeste, Brasília">Ateliê de Cerâmica Autoral - Núcleo Rural Lago Oeste, Brasília</p>
+        <p style="margin-top: 0.5rem;"><a href="https://niviapimentaceramica.com/" data-pt="Voltar à Loja Principal" data-en="Back to Main Store">Voltar à Loja Principal</a></p>
     </footer>
 
-<div class="lightbox" id="lightbox">
-<span class="close">&times;</span>
-<img id="lightboxImg" src="" alt="">
-</div>
-
+    <div class="lightbox" id="lightbox">
+        <span class="close">&times;</span>
+        <img id="lightboxImg" src="" alt="">
+    </div>
 
     <!-- CAROUSEL JAVASCRIPT -->
     <script>
@@ -854,52 +768,64 @@ A Criatividade em mim nasce num lugar de muita liberdade como Mulher, Artista, E
 
         // Atualizar ao redimensionar
         window.addEventListener('resize', updateCarousel);
-    
-const lightbox = document.getElementById('lightbox');
-const lightboxImg = document.getElementById('lightboxImg');
+    </script>
 
-document.querySelectorAll('.gallery-item img').forEach(img => {
-    img.addEventListener('click', function(event) {
-        event.preventDefault();
-        event.stopPropagation();
-        lightbox.style.display = 'flex';
-        lightboxImg.src = this.src;
-        lightboxImg.alt = this.alt;
-        document.body.style.overflow = 'hidden';
-    });
-});
+    <!-- LIGHTBOX JAVASCRIPT -->
+    <script>
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightboxImg');
+        const closeBtn = document.querySelector('.close');
 
-function closeLightbox() {
-    lightbox.style.display = 'none';
-    document.body.style.overflow = '';
-}
+        document.querySelectorAll('.gallery-item img').forEach(img => {
+            img.addEventListener('click', function(event) {
+                event.preventDefault();
+                event.stopPropagation();
+                lightbox.style.display = 'flex';
+                lightboxImg.src = this.src;
+                lightboxImg.alt = this.alt;
+                document.body.style.overflow = 'hidden';
+            });
+        });
 
-lightbox.addEventListener('click', function(e) {
-    if (e.target === lightbox || e.target.classList.contains('close')) {
-        closeLightbox();
-    }
-});
+        function closeLightbox() {
+            lightbox.style.display = 'none';
+            document.body.style.overflow = '';
+        }
 
-document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') {
-        closeLightbox();
-    
+        closeBtn.addEventListener('click', closeLightbox);
 
+        lightbox.addEventListener('click', function(e) {
+            if (e.target === lightbox) {
+                closeLightbox();
+            }
+        });
 
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeLightbox();
+            }
+        });
+    </script>
 
+    <!-- LANGUAGE SWITCHER JAVASCRIPT -->
+    <script>
+        function setLanguage(lang) {
+            localStorage.setItem('siteLang', lang);
+            document.documentElement.lang = lang;
+            document.querySelectorAll('[data-pt]').forEach(el => {
+                const txt = el.getAttribute('data-' + lang);
+                if (txt) {
+                    el.innerHTML = txt;
+                }
+            });
+            document.getElementById('btn-pt').classList.toggle('active', lang === 'pt');
+            document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+        }
 
-<script>
-function setLanguage(lang){
- localStorage.setItem('siteLang',lang);
- document.documentElement.lang=lang;
- document.querySelectorAll('[data-pt]').forEach(el=>{
-   const txt=el.getAttribute('data-'+lang);
-   if(txt) el.innerHTML=txt;
- });
- document.getElementById('btn-pt').classList.toggle('active',lang==='pt');
- document.getElementById('btn-en').classList.toggle('active',lang==='en');
-}
-window.addEventListener('DOMContentLoaded',()=>setLanguage(localStorage.getItem('siteLang')||'pt'));
-</script>
+        window.addEventListener('DOMContentLoaded', () => {
+            setLanguage(localStorage.getItem('siteLang') || 'pt');
+        });
+    </script>
+
 </body>
 </html>
