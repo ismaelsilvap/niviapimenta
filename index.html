@@ -561,8 +561,14 @@
                 grid-template-columns: 1fr;
             }
 
+            .carousel-wrapper {
+                width: 100%;
+                overflow: hidden;
+            }
+
             .gallery-grid {
-                grid-template-columns: repeat(2, 1fr) !important;
+                width: 600%;
+                grid-template-columns: repeat(4, 1fr);
                 gap: 1rem;
             }
 
@@ -749,18 +755,21 @@
         const nextBtn = document.getElementById('nextBtn');
         const carouselWrapper = document.querySelector('.carousel-wrapper');
 
-        // Create indicators (um por imagem)
-        for (let i = 0; i < totalItems; i++) {
-            const indicator = document.createElement('button');
-            indicator.className = 'indicator' + (i === 0 ? ' active' : '');
-            indicator.addEventListener('click', () => goToSlide(i));
-            indicatorsContainer.appendChild(indicator);
-        }
-
-        const indicators = document.querySelectorAll('.indicator');
-
         function isMobileView() {
             return window.innerWidth <= 768;
+        }
+
+        function createIndicators() {
+            indicatorsContainer.innerHTML = '';
+            const itemsPerView = isMobileView() ? 1 : 4;
+            const numIndicators = Math.ceil(totalItems / itemsPerView);
+            
+            for (let i = 0; i < numIndicators; i++) {
+                const indicator = document.createElement('button');
+                indicator.className = 'indicator' + (i === 0 ? ' active' : '');
+                indicator.addEventListener('click', () => goToSlide(i));
+                indicatorsContainer.appendChild(indicator);
+            }
         }
 
         function initCarousel() {
@@ -768,6 +777,7 @@
                 prevBtn.classList.add('active');
                 nextBtn.classList.add('active');
                 indicatorsContainer.classList.add('active');
+                createIndicators();
                 startAutoPlay();
             } else {
                 prevBtn.classList.remove('active');
@@ -782,27 +792,28 @@
         function updateCarousel() {
             if (!isMobileView()) return;
             
-            const itemsPerView = 2;
-            const itemWidth = 100 / itemsPerView;
-            carousel.style.transform = `translateX(-${currentIndex * itemWidth}%)`;
+            // Cada imagem ocupa 100% da viewport no mobile
+            const translateAmount = currentIndex * 100;
+            carousel.style.transform = `translateX(-${translateAmount}%)`;
             
             // Atualizar indicadores
+            const indicators = document.querySelectorAll('.indicator');
             indicators.forEach((indicator, index) => {
                 indicator.classList.toggle('active', index === currentIndex);
             });
         }
 
         function nextSlide() {
-            const itemsPerView = isMobileView() ? 2 : 4;
-            const maxIndex = totalItems - itemsPerView;
-            currentIndex = currentIndex >= maxIndex ? 0 : currentIndex + 1;
+            const itemsPerView = isMobileView() ? 1 : 4;
+            const maxPages = Math.ceil(totalItems / itemsPerView);
+            currentIndex = currentIndex >= maxPages - 1 ? 0 : currentIndex + 1;
             updateCarousel();
         }
 
         function prevSlide() {
-            const itemsPerView = isMobileView() ? 2 : 4;
-            const maxIndex = totalItems - itemsPerView;
-            currentIndex = currentIndex <= 0 ? maxIndex : currentIndex - 1;
+            const itemsPerView = isMobileView() ? 1 : 4;
+            const maxPages = Math.ceil(totalItems / itemsPerView);
+            currentIndex = currentIndex <= 0 ? maxPages - 1 : currentIndex - 1;
             updateCarousel();
         }
 
