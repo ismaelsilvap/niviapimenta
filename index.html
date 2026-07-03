@@ -53,10 +53,25 @@
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
         }
 
-        .nav-logo img {
-            max-height: 90px;
-            width: auto;
-            display: block;
+        .back-button {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.7rem 1.2rem;
+            background-color: transparent;
+            border: 1px solid var(--primary-black);
+            color: var(--primary-black);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.85rem;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .back-button:hover {
+            background-color: var(--primary-black);
+            color: var(--primary-white);
         }
 
         .nav-center {
@@ -66,8 +81,8 @@
         }
 
         .nav-brand {
-            font-size: 1.1rem;
-            font-weight: 600;
+            font-size: 1.3rem;
+            font-weight: 700;
             color: var(--primary-black);
             text-decoration: none;
             letter-spacing: 0.5px;
@@ -313,6 +328,11 @@
             border-radius: 4px;
             transition: background-color 0.3s ease;
             z-index: 10;
+            display: none;
+        }
+
+        .carousel-btn.active {
+            display: block;
         }
 
         .carousel-btn:hover {
@@ -328,10 +348,14 @@
         }
 
         .carousel-indicators {
-            display: flex;
+            display: none;
             justify-content: center;
             gap: 0.5rem;
             margin-top: 2rem;
+        }
+
+        .carousel-indicators.active {
+            display: flex;
         }
 
         .indicator {
@@ -538,7 +562,16 @@
             }
 
             .gallery-grid {
-                grid-template-columns: repeat(2, 1fr);
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 1rem;
+            }
+
+            .carousel-btn.active {
+                display: block;
+            }
+
+            .carousel-indicators.active {
+                display: flex;
             }
 
             .design-grid {
@@ -561,6 +594,15 @@
                 padding: 0.4rem 0.8rem;
                 font-size: 0.75rem;
             }
+
+            .back-button {
+                padding: 0.5rem 0.8rem;
+                font-size: 0.75rem;
+            }
+
+            .nav-brand {
+                font-size: 1rem;
+            }
         }
     </style>
 </head>
@@ -568,11 +610,9 @@
 
     <!-- NAVBAR -->
     <nav>
-        <div class="nav-logo">
-            <img src="https://d1a9qnv764bsoo.cloudfront.net/stores/005/328/570/themes/common/logo-4812530-1750023015-6820c8a84e5bda33772be4cca84311901750023015.ico?0" alt="Nivia Pimenta">
-        </div>
+        <a href="https://niviapimentaceramica.com/" class="back-button" data-pt="← Voltar" data-en="← Back">← Voltar</a>
         <div class="nav-center">
-            <a href="#" class="nav-brand">Nivia Pimenta</a>
+            <span class="nav-brand">Nivia Pimenta</span>
         </div>
         <div class="nav-right">
             <div class="language-switcher">
@@ -700,12 +740,14 @@
     <!-- CAROUSEL JAVASCRIPT -->
     <script>
         let currentIndex = 0;
+        let autoPlayInterval = null;
         const carousel = document.getElementById('carousel');
         const items = document.querySelectorAll('.gallery-item');
         const totalItems = items.length;
         const indicatorsContainer = document.getElementById('indicators');
         const prevBtn = document.getElementById('prevBtn');
         const nextBtn = document.getElementById('nextBtn');
+        const carouselWrapper = document.querySelector('.carousel-wrapper');
 
         // Create indicators (um por imagem)
         for (let i = 0; i < totalItems; i++) {
@@ -717,13 +759,30 @@
 
         const indicators = document.querySelectorAll('.indicator');
 
-        function getItemsPerView() {
-            // Retorna quantas imagens aparecem de uma vez
-            return window.innerWidth <= 768 ? 2 : 4;
+        function isMobileView() {
+            return window.innerWidth <= 768;
+        }
+
+        function initCarousel() {
+            if (isMobileView()) {
+                prevBtn.classList.add('active');
+                nextBtn.classList.add('active');
+                indicatorsContainer.classList.add('active');
+                startAutoPlay();
+            } else {
+                prevBtn.classList.remove('active');
+                nextBtn.classList.remove('active');
+                indicatorsContainer.classList.remove('active');
+                stopAutoPlay();
+                carousel.style.transform = 'translateX(0)';
+                currentIndex = 0;
+            }
         }
 
         function updateCarousel() {
-            const itemsPerView = getItemsPerView();
+            if (!isMobileView()) return;
+            
+            const itemsPerView = 2;
             const itemWidth = 100 / itemsPerView;
             carousel.style.transform = `translateX(-${currentIndex * itemWidth}%)`;
             
@@ -734,14 +793,14 @@
         }
 
         function nextSlide() {
-            const itemsPerView = getItemsPerView();
+            const itemsPerView = isMobileView() ? 2 : 4;
             const maxIndex = totalItems - itemsPerView;
             currentIndex = currentIndex >= maxIndex ? 0 : currentIndex + 1;
             updateCarousel();
         }
 
         function prevSlide() {
-            const itemsPerView = getItemsPerView();
+            const itemsPerView = isMobileView() ? 2 : 4;
             const maxIndex = totalItems - itemsPerView;
             currentIndex = currentIndex <= 0 ? maxIndex : currentIndex - 1;
             updateCarousel();
@@ -752,22 +811,34 @@
             updateCarousel();
         }
 
+        function startAutoPlay() {
+            if (isMobileView()) {
+                autoPlayInterval = setInterval(nextSlide, 4000);
+            }
+        }
+
+        function stopAutoPlay() {
+            if (autoPlayInterval) {
+                clearInterval(autoPlayInterval);
+                autoPlayInterval = null;
+            }
+        }
+
         // Button event listeners
         nextBtn.addEventListener('click', nextSlide);
         prevBtn.addEventListener('click', prevSlide);
 
-        // Auto-play carousel - 3 segundos
-        let autoPlayInterval = setInterval(nextSlide, 3000);
-
         // Pause auto-play on hover
-        const carouselWrapper = document.querySelector('.carousel-wrapper');
-        carouselWrapper.addEventListener('mouseenter', () => clearInterval(autoPlayInterval));
-        carouselWrapper.addEventListener('mouseleave', () => {
-            autoPlayInterval = setInterval(nextSlide, 3000);
-        });
+        carouselWrapper.addEventListener('mouseenter', stopAutoPlay);
+        carouselWrapper.addEventListener('mouseleave', startAutoPlay);
 
         // Atualizar ao redimensionar
-        window.addEventListener('resize', updateCarousel);
+        window.addEventListener('resize', () => {
+            initCarousel();
+        });
+
+        // Inicializar no carregamento
+        initCarousel();
     </script>
 
     <!-- LIGHTBOX JAVASCRIPT -->
