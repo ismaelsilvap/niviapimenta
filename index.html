@@ -81,11 +81,15 @@
         }
 
         .nav-brand {
-            font-size: 1.3rem;
-            font-weight: 700;
-            color: var(--primary-black);
-            text-decoration: none;
-            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .nav-brand img {
+            max-height: 70px;
+            width: auto;
+            display: block;
         }
 
         .nav-right {
@@ -561,23 +565,17 @@
                 grid-template-columns: 1fr;
             }
 
-            .carousel-wrapper {
-                width: 100%;
-                overflow: hidden;
-            }
-
             .gallery-grid {
-                width: 600%;
-                grid-template-columns: repeat(4, 1fr);
+                grid-template-columns: repeat(2, 1fr);
                 gap: 1rem;
             }
 
-            .carousel-btn.active {
-                display: block;
+            .carousel-btn {
+                display: none !important;
             }
 
-            .carousel-indicators.active {
-                display: flex;
+            .carousel-indicators {
+                display: none !important;
             }
 
             .design-grid {
@@ -618,7 +616,10 @@
     <nav>
         <a href="https://niviapimentaceramica.com/" class="back-button" data-pt="← Voltar" data-en="← Back">← Voltar</a>
         <div class="nav-center">
-            <span class="nav-brand">Nivia Pimenta</span>
+            <!-- EDITAR AQUI: Coloque a URL da logo no atributo src="" -->
+            <div class="nav-brand">
+                <img src="https://dcdn-us.mitiendanube.com/stores/005/328/570/themes/common/logo-448075726-1750873795-1fcc2e86be9b3423ccff6415d2fd0da71750873795-480-0.webp" alt="Nivia Pimenta Logo">
+            </div>
         </div>
         <div class="nav-right">
             <div class="language-switcher">
@@ -743,7 +744,7 @@
         <img id="lightboxImg" src="" alt="">
     </div>
 
-    <!-- CAROUSEL JAVASCRIPT -->
+    <!-- CAROUSEL JAVASCRIPT - APENAS DESKTOP -->
     <script>
         let currentIndex = 0;
         let autoPlayInterval = null;
@@ -759,89 +760,19 @@
             return window.innerWidth <= 768;
         }
 
-        function createIndicators() {
-            indicatorsContainer.innerHTML = '';
-            const itemsPerView = isMobileView() ? 1 : 4;
-            const numIndicators = Math.ceil(totalItems / itemsPerView);
-            
-            for (let i = 0; i < numIndicators; i++) {
-                const indicator = document.createElement('button');
-                indicator.className = 'indicator' + (i === 0 ? ' active' : '');
-                indicator.addEventListener('click', () => goToSlide(i));
-                indicatorsContainer.appendChild(indicator);
-            }
-        }
-
         function initCarousel() {
-            if (isMobileView()) {
-                prevBtn.classList.add('active');
-                nextBtn.classList.add('active');
-                indicatorsContainer.classList.add('active');
-                createIndicators();
-                startAutoPlay();
-            } else {
-                prevBtn.classList.remove('active');
-                nextBtn.classList.remove('active');
-                indicatorsContainer.classList.remove('active');
-                stopAutoPlay();
+            // Carrossel apenas no desktop
+            if (!isMobileView()) {
                 carousel.style.transform = 'translateX(0)';
                 currentIndex = 0;
+            } else {
+                // Mobile: apenas grid, sem carrossel
+                prevBtn.style.display = 'none';
+                nextBtn.style.display = 'none';
+                indicatorsContainer.style.display = 'none';
+                stopAutoPlay();
             }
         }
-
-        function updateCarousel() {
-            if (!isMobileView()) return;
-            
-            // Cada imagem ocupa 100% da viewport no mobile
-            const translateAmount = currentIndex * 100;
-            carousel.style.transform = `translateX(-${translateAmount}%)`;
-            
-            // Atualizar indicadores
-            const indicators = document.querySelectorAll('.indicator');
-            indicators.forEach((indicator, index) => {
-                indicator.classList.toggle('active', index === currentIndex);
-            });
-        }
-
-        function nextSlide() {
-            const itemsPerView = isMobileView() ? 1 : 4;
-            const maxPages = Math.ceil(totalItems / itemsPerView);
-            currentIndex = currentIndex >= maxPages - 1 ? 0 : currentIndex + 1;
-            updateCarousel();
-        }
-
-        function prevSlide() {
-            const itemsPerView = isMobileView() ? 1 : 4;
-            const maxPages = Math.ceil(totalItems / itemsPerView);
-            currentIndex = currentIndex <= 0 ? maxPages - 1 : currentIndex - 1;
-            updateCarousel();
-        }
-
-        function goToSlide(index) {
-            currentIndex = index;
-            updateCarousel();
-        }
-
-        function startAutoPlay() {
-            if (isMobileView()) {
-                autoPlayInterval = setInterval(nextSlide, 4000);
-            }
-        }
-
-        function stopAutoPlay() {
-            if (autoPlayInterval) {
-                clearInterval(autoPlayInterval);
-                autoPlayInterval = null;
-            }
-        }
-
-        // Button event listeners
-        nextBtn.addEventListener('click', nextSlide);
-        prevBtn.addEventListener('click', prevSlide);
-
-        // Pause auto-play on hover
-        carouselWrapper.addEventListener('mouseenter', stopAutoPlay);
-        carouselWrapper.addEventListener('mouseleave', startAutoPlay);
 
         // Atualizar ao redimensionar
         window.addEventListener('resize', () => {
